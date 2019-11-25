@@ -1,5 +1,5 @@
 Analysis & Synthesis report for verilog-uart
-Sun Nov 17 00:38:33 2019
+Mon Nov 25 21:39:23 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,12 +13,8 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. Removed Registers Triggering Further Register Optimizations
- 10. General Register Statistics
- 11. Inverted Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Analysis & Synthesis Messages
+  8. General Register Statistics
+  9. Analysis & Synthesis Messages
 
 
 
@@ -44,12 +40,12 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Sun Nov 17 00:38:33 2019       ;
+; Analysis & Synthesis Status ; Successful - Mon Nov 25 21:39:23 2019       ;
 ; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name               ; verilog-uart                                ;
 ; Top-level Entity Name       ; entry                                       ;
 ; Family                      ; MAX II                                      ;
-; Total logic elements        ; 54                                          ;
+; Total logic elements        ; 1                                           ;
 ; Total pins                  ; 3                                           ;
 ; Total virtual pins          ; 0                                           ;
 ; UFM blocks                  ; 0 / 1 ( 0 % )                               ;
@@ -152,39 +148,38 @@ refer to the applicable agreement for further details.
 +----------------------------------+-----------------+------------------------+--------------------------------+---------+
 
 
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-; Total logic elements                        ; 54    ;
-;     -- Combinational with no register       ; 28    ;
-;     -- Register only                        ; 4     ;
-;     -- Combinational with a register        ; 22    ;
-;                                             ;       ;
-; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 10    ;
-;     -- 3 input functions                    ; 17    ;
-;     -- 2 input functions                    ; 20    ;
-;     -- 1 input functions                    ; 3     ;
-;     -- 0 input functions                    ; 0     ;
-;                                             ;       ;
-; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 37    ;
-;     -- arithmetic mode                      ; 17    ;
-;     -- qfbk mode                            ; 0     ;
-;     -- register cascade mode                ; 0     ;
-;     -- synchronous clear/load mode          ; 0     ;
-;     -- asynchronous clear/load mode         ; 0     ;
-;                                             ;       ;
-; Total registers                             ; 26    ;
-; Total logic cells in carry chains           ; 19    ;
-; I/O pins                                    ; 3     ;
-; Maximum fan-out node                        ; clk   ;
-; Maximum fan-out                             ; 26    ;
-; Total fan-out                               ; 169   ;
-; Average fan-out                             ; 2.96  ;
-+---------------------------------------------+-------+
++--------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary            ;
++---------------------------------------------+----------+
+; Resource                                    ; Usage    ;
++---------------------------------------------+----------+
+; Total logic elements                        ; 1        ;
+;     -- Combinational with no register       ; 0        ;
+;     -- Register only                        ; 1        ;
+;     -- Combinational with a register        ; 0        ;
+;                                             ;          ;
+; Logic element usage by number of LUT inputs ;          ;
+;     -- 4 input functions                    ; 0        ;
+;     -- 3 input functions                    ; 0        ;
+;     -- 2 input functions                    ; 0        ;
+;     -- 1 input functions                    ; 0        ;
+;     -- 0 input functions                    ; 0        ;
+;                                             ;          ;
+; Logic elements by mode                      ;          ;
+;     -- normal mode                          ; 1        ;
+;     -- arithmetic mode                      ; 0        ;
+;     -- qfbk mode                            ; 0        ;
+;     -- register cascade mode                ; 0        ;
+;     -- synchronous clear/load mode          ; 0        ;
+;     -- asynchronous clear/load mode         ; 0        ;
+;                                             ;          ;
+; Total registers                             ; 1        ;
+; I/O pins                                    ; 3        ;
+; Maximum fan-out node                        ; out~reg0 ;
+; Maximum fan-out                             ; 1        ;
+; Total fan-out                               ; 3        ;
+; Average fan-out                             ; 0.75     ;
++---------------------------------------------+----------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -192,28 +187,9 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
-; |entry                     ; 54 (54)     ; 26           ; 0          ; 3    ; 0            ; 28 (28)      ; 4 (4)             ; 22 (22)          ; 19 (19)         ; 0 (0)      ; |entry              ; entry       ; work         ;
+; |entry                     ; 1 (1)       ; 1            ; 0          ; 3    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |entry              ; entry       ; work         ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+------------------------------------------------------------+
-; Registers Removed During Synthesis                         ;
-+---------------------------------------+--------------------+
-; Register name                         ; Reason for Removal ;
-+---------------------------------------+--------------------+
-; sh_reg[4..9]                          ; Lost fanout        ;
-; Total Number of Removed Registers = 6 ;                    ;
-+---------------------------------------+--------------------+
-
-
-+--------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                ;
-+---------------+--------------------+-------------------------------------------------------+
-; Register name ; Reason for Removal ; Registers Removed due to This Register                ;
-+---------------+--------------------+-------------------------------------------------------+
-; sh_reg[9]     ; Lost Fanouts       ; sh_reg[8], sh_reg[7], sh_reg[6], sh_reg[5], sh_reg[4] ;
-+---------------+--------------------+-------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -221,39 +197,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 26    ;
+; Total registers                              ; 1     ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 4     ;
+; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
-
-
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; cnt[0]                                 ; 3       ;
-; cnt[3]                                 ; 2       ;
-; cnt[4]                                 ; 2       ;
-; cnt[5]                                 ; 2       ;
-; cnt[6]                                 ; 2       ;
-; cnt[7]                                 ; 2       ;
-; data_pre                               ; 15      ;
-; Total number of inverted registers = 7 ;         ;
-+----------------------------------------+---------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |entry|cnt[1]              ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
 +-------------------------------+
@@ -262,33 +213,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Nov 17 00:38:19 2019
+    Info: Processing started: Mon Nov 25 21:39:09 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off verilog-uart -c verilog-uart
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file entry.v
-    Info (12023): Found entity 1: entry File: C:/Github/verilog-uart/entry.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at entry.v(51): created implicit net for "data_posedge" File: C:/Github/verilog-uart/entry.v Line: 51
-Warning (10236): Verilog HDL Implicit Net warning at entry.v(52): created implicit net for "data_negedge" File: C:/Github/verilog-uart/entry.v Line: 52
-Warning (10236): Verilog HDL Implicit Net warning at entry.v(53): created implicit net for "check" File: C:/Github/verilog-uart/entry.v Line: 53
+    Info (12023): Found entity 1: entry File: C:/Github/verilog-uart/entry.v Line: 59
 Info (12127): Elaborating entity "entry" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at entry.v(13): truncated value with size 32 to match size of target (14) File: C:/Github/verilog-uart/entry.v Line: 13
-Warning (10230): Verilog HDL assignment warning at entry.v(24): truncated value with size 32 to match size of target (14) File: C:/Github/verilog-uart/entry.v Line: 24
-Warning (10230): Verilog HDL assignment warning at entry.v(26): truncated value with size 32 to match size of target (14) File: C:/Github/verilog-uart/entry.v Line: 26
-Warning (10230): Verilog HDL assignment warning at entry.v(30): truncated value with size 32 to match size of target (14) File: C:/Github/verilog-uart/entry.v Line: 30
-Warning (10230): Verilog HDL assignment warning at entry.v(32): truncated value with size 32 to match size of target (14) File: C:/Github/verilog-uart/entry.v Line: 32
-Warning (10230): Verilog HDL assignment warning at entry.v(44): truncated value with size 32 to match size of target (5) File: C:/Github/verilog-uart/entry.v Line: 44
-Warning (10230): Verilog HDL assignment warning at entry.v(45): truncated value with size 32 to match size of target (1) File: C:/Github/verilog-uart/entry.v Line: 45
-Warning (10230): Verilog HDL assignment warning at entry.v(47): truncated value with size 32 to match size of target (5) File: C:/Github/verilog-uart/entry.v Line: 47
-Info (17049): 6 registers lost all their fanouts during netlist optimizations.
-Info (21057): Implemented 57 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 4 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 1 output pins
-    Info (21061): Implemented 54 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 12 warnings
-    Info: Peak virtual memory: 4692 megabytes
-    Info: Processing ended: Sun Nov 17 00:38:33 2019
+    Info (21061): Implemented 1 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4690 megabytes
+    Info: Processing ended: Mon Nov 25 21:39:23 2019
     Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:31
+    Info: Total CPU time (on all processors): 00:00:32
 
 

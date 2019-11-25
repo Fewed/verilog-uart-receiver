@@ -64,3 +64,4 @@ set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
 set_location_assignment PIN_52 -to data
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data
 set_instance_assignment -name RESERVE_PIN AS_INPUT_TRI_STATED -to data
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"

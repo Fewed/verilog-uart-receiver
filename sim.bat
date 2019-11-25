@@ -1,0 +1,1 @@
+iverilog -o qqq entry.v tb.v && vvp qqq && cls

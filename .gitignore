@@ -1,4 +1,4 @@
 /db
 /incremental_db
 /simulation
-entry.v.orig
+*.orig
