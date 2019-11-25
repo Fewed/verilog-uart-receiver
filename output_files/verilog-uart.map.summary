@@ -1,0 +1,9 @@
+Analysis & Synthesis Status : Successful - Sun Nov 17 00:38:33 2019
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : verilog-uart
+Top-level Entity Name : entry
+Family : MAX II
+Total logic elements : 54
+Total pins : 3
+Total virtual pins : 0
+UFM blocks : 0 / 1 ( 0 % )

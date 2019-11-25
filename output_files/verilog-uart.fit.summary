@@ -1,0 +1,11 @@
+Fitter Status : Successful - Sun Nov 17 00:38:36 2019
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : verilog-uart
+Top-level Entity Name : entry
+Family : MAX II
+Device : EPM240T100C5
+Timing Models : Final
+Total logic elements : 52 / 240 ( 22 % )
+Total pins : 3 / 80 ( 4 % )
+Total virtual pins : 0
+UFM blocks : 0 / 1 ( 0 % )
