@@ -62,6 +62,8 @@ module entry(
 				 output reg out
 			 );
 
+localparam cnt = 15;
+
 always @(posedge clk) begin
 	out <= data;
 end

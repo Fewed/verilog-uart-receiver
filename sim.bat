@@ -1,1 +1,1 @@
-iverilog -o qqq entry.v tb.v && vvp qqq && cls
+iverilog -o qqq tb.v && vvp qqq && cls

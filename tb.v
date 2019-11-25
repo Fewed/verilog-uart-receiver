@@ -5,6 +5,8 @@ module test_entry;
 reg tclk, tdata;
 wire tout;
 
+integer i;
+
 //устанавливаем экземпляр тестируемого модуля
 entry entry_inst(tclk, tdata, tout);
 
@@ -17,17 +19,13 @@ initial begin
 	tclk = 0;
 	tdata = 0;
 
-	//через временной интервал "50" подаем сигнал сброса
-	#55 tdata = 1;
-	#50 tdata = 0;
-	#50 tdata = 1;
-	#50 tdata = 0;
+	#55 tdata = ~tdata;
+	for (i=0; i<8; i++) #50 tdata = ~tdata;
 end
 
 //заканчиваем симуляцию в момент времени "400"
-initial begin
-	#400 $finish;
-end
+initial #500 $finish;
+
 
 //создаем файл VCD для последующего анализа сигналов
 initial begin
