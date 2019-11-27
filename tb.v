@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 `include "entry.v"
 
 module test_entry;
@@ -19,12 +20,12 @@ initial begin
 	tclk = 0;
 	tdata = 0;
 
-	#55 tdata = ~tdata;
-	for (i=0; i<8; i++) #50 tdata = ~tdata;
+	#90 tdata = ~tdata;
+	for (i=0; i<8; i++) #100 tdata = ~tdata;
 end
 
 //заканчиваем симуляцию в момент времени "400"
-initial #500 $finish;
+initial #50000 $finish;
 
 
 //создаем файл VCD для последующего анализа сигналов

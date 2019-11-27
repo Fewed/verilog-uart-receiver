@@ -56,17 +56,44 @@ assign check = isTransmit && (cnt == 0);
 endmodule
 */
 
-module entry(
+
+/*
+module entry #(parameter width=8) (
 				 input wire clk,
 				 input wire data,
-				 output reg out
+				 output reg[width-1:0] sh_reg
+			 );
+ 
+ 
+ 
+ 
+ 
+always @(posedge clk) begin
+	sh_reg <= {sh_reg[width-2:0], data};
+end
+ 
+endmodule
+*/
+
+//`include "gen.v"
+
+module entry #(parameter clk_mhz=50, freq_khz=400, duty=40) (
+				 input wire clk,
+				 input wire data,
+				 output wire out
 			 );
 
-localparam cnt = 15;
+localparam cnt_max = 1000 * clk_mhz / freq_khz,
+					 cnt_width = $clog2(cnt_max),
+					 cnt_duty = duty * cnt_max / 100;
+
+reg[cnt_width-1:0] cnt = 0;
 
 always @(posedge clk) begin
-	out <= data;
+	cnt <= cnt < cnt_max-1 ? cnt + 1 : 0;
 end
+
+assign out = cnt < cnt_duty;
 
 
 endmodule
