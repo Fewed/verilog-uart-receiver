@@ -4,12 +4,13 @@
 module test_entry;
 
 reg tclk, tdata;
-wire tout;
+wire tout,
+		 tout2;
 
 integer i;
 
 //устанавливаем экземпляр тестируемого модуля
-entry entry_inst(tclk, tdata, tout);
+entry entry_inst(tclk, tdata, tout, tout2);
 
 //моделируем сигнал тактовой частоты
 always #10 tclk = ~tclk;
@@ -35,6 +36,6 @@ initial begin
 end
 
 //наблюдаем на некоторыми сигналами системы
-initial $monitor($stime,, tclk,,, tdata,, tout);
+initial $monitor($stime,, tclk,,, tdata,, tout,, tout2);
 
 endmodule

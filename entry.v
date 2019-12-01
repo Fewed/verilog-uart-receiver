@@ -75,25 +75,31 @@ end
 endmodule
 */
 
-//`include "gen.v"
+`include "pwm.v"
+`include "edge_det.v"
 
-module entry #(parameter clk_mhz=50, freq_khz=400, duty=40) (
+module entry (
 				 input wire clk,
 				 input wire data,
-				 output wire out
+				 output wire out,
+				 output wire out2
 			 );
 
-localparam cnt_max = 1000 * clk_mhz / freq_khz,
-					 cnt_width = $clog2(cnt_max),
-					 cnt_duty = duty * cnt_max / 100;
+wire clk_uart,
+		 edges,
+		 neg_egde_det_out;
 
-reg[cnt_width-1:0] cnt = 0;
+reg zero = 0;
+
+pwm #(.freq_khz(1000), .duty(50)) pwm_ins(.clk(clk), .rst(zero), .out(clk_uart));
+edge_det #(.type(2)) edge_det_ins(.clk(clk), .sgn(clk_uart), .out(edges));
+edge_det #(.type(1)) neg_edge_det(.clk(clk), .sgn(clk_uart), .out(neg_egde_det_out));
 
 always @(posedge clk) begin
-	cnt <= cnt < cnt_max-1 ? cnt + 1 : 0;
+
 end
 
-assign out = cnt < cnt_duty;
-
+assign out = clk_uart,
+			 out2 = edges;
 
 endmodule
