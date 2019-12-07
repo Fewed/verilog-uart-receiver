@@ -77,29 +77,44 @@ endmodule
 
 `include "pwm.v"
 `include "edge_det.v"
+`include "cnt.v"
 
 module entry (
 				 input wire clk,
-				 input wire data,
-				 output wire out,
-				 output wire out2
+				 input wire uart_tx,
+				 output wire uart_clk,
+				 output wire tmr_rst,
+				 output wire[7:0] state_cnt_value,
+				 output reg[1:0] state_value = 0,
+				 output reg[7:0] info = 0
 			 );
 
-wire clk_uart,
-		 edges,
-		 neg_egde_det_out;
+wire neg_egde_det_out;
+
+
 
 reg zero = 0;
 
-pwm #(.freq_khz(1000), .duty(50)) pwm_ins(.clk(clk), .rst(zero), .out(clk_uart));
-edge_det #(.type(2)) edge_det_ins(.clk(clk), .sgn(clk_uart), .out(edges));
-edge_det #(.type(1)) neg_edge_det(.clk(clk), .sgn(clk_uart), .out(neg_egde_det_out));
+
+pwm #(.freq_khz(2000), .duty(50)) pwm_ins(.clk(clk), .rst(zero), .out(uart_clk));
+//edge_det #(.type(0)) resett(.clk(clk), .sgn(uart_tx), .out(get_data));
+edge_det #(.type(1)) neg_edge_det(.clk(clk), .sgn(uart_tx), .out(neg_egde_det_out));
+cnt state_cnt(.clk(uart_clk), .rst(tmr_rst), .out(state_cnt_value));
 
 always @(posedge clk) begin
-
+	if (tmr_rst) state_value <= 1;
+	else if (e2) state_value <= 2;
+	else if (e3) state_value <= 0;
 end
 
-assign out = clk_uart,
-			 out2 = edges;
+always @(posedge middle) begin
+	if (state_value) info <= {uart_tx, info[7:1]};
+end
+
+assign tmr_rst = (state_value == 0) & neg_egde_det_out,
+			 e2 = (state_value == 1) & (state_cnt_value == 3),
+			 e3 = (state_value == 2) & (state_cnt_value == 2*7+3),
+			 middle = (state_cnt_value-1)%2 == 0;
+
 
 endmodule
